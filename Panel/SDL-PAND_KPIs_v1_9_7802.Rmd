@@ -1,0 +1,127 @@
+---
+title: "SDL PAND v1.9 - Metropolità nord"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: scroll
+    favicon: favicon.ico
+---
+
+## SDL-PAND KPIs
+```{r echo=FALSE}
+library(flexdashboard)
+library("knitr")
+library("RSocrata")
+library(plotly)
+library(personograph)
+library(dplyr)
+library(rococo)
+library(EpiEstim)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r echo=FALSE}
+read_chunk('common.R')
+```
+
+
+```{r setup, include=FALSE}
+PoblacioTotal = 1986032
+regio=7802
+
+casos <- read.socrata("https://analisi.transparenciacatalunya.cat/api/odata/v4/623z-r97q")
+casosTotal <- read.socrata("https://analisi.transparenciacatalunya.cat/api/odata/v4/qwj8-xpvk")
+casosTotal <- casosTotal %>% filter(regiosanitariacodi == 7802)
+casosPositius <- casosTotal %>% filter(resultatcoviddescripcio != 'Sospitós')
+casosSospitos <- read.socrata("https://analisi.transparenciacatalunya.cat/api/odata/v4/dmzh-fz47")
+
+casosDiaris <- aggregate(casosPositius$numcasos, by=list(casosPositius$data), sum)
+colnames(casosDiaris) <- c("data","nous_casos_confirmats")
+
+testsDiaris <- aggregate(casosSospitos$pcr, by=list(casosSospitos$data), sum)
+colnames(testsDiaris) <- c("data","nous_tests_fets")
+
+infective <- read.csv2("../../models/SDL/Pandemiav1.9/experiment/7802/data/traces/totalInfective.csv")
+recovered <- read.csv2("../../models/SDL/Pandemiav1.9/experiment/7802/data/traces/totalRecovered.csv")
+deaths <- read.csv2("../../models/SDL/Pandemiav1.9/experiment/7802/data/traces/totalDeceased.csv")
+
+#nous_casos_model <- read.csv("../new_cases.csv", header = FALSE)
+newInfectives <- read.csv2("../../models/SDL/Pandemiav1.9/experiment/7802/data/traces/newInfectiveDetectedDiary.csv")
+
+# El model sdlps comença el dia 29 de gener, seleccionem només els valors dels dts sense decimals, 1 de cada 10.
+index = c(1:(length(newInfectives$time)/10))
+dt1 <- rep(as.Date("2020-01-29 CET"),length(index))
+datetimes<-dt1+index
+values<-newInfectives$values[newInfectives$time %in% index]
+newInfectives<-data.frame(datetimes,values)
+
+onlyOneModel = TRUE
+
+#Cal afegir les dades del model a casosDiaris
+nous_casos_model <- read.csv("../new_cases.csv", header = FALSE)
+casosDiaris$model1.7<-nous_casos_model[31:(dim(casosDiaris)[1]+30),]
+
+#Guardar en csv els casos diaris
+write.csv(casosDiaris,"./SDLModel/7802_casosDiaris.csv",row.names = FALSE)
+
+```
+
+```{r functions, echo=FALSE}
+```
+
+
+### Casos diàris
+El model de simulació permet tenir una previsió de com evolucionarà la pandèmia. Es corregeix en funció de les dades reals de l'evolució de la pandèmia.
+
+```{r plotModel, echo=FALSE}
+```
+
+
+### Valor de R
+```{r R_calculus, echo=FALSE}
+```
+
+Row
+-----------------------------------------------------------------------
+### Creixement efectiu
+```{r day_cases, echo=FALSE}
+```
+Referència: 3 dies de mitjana mòbil (C3), 7 dies de mitjana mòbil (C7) i 15 dies de mitjana mòbil (C14). Un valor superior a 1 és dolent ja que implica que el nombre d’afectats està en augment. C14 és més estable que C3, per tant recullen les variacions de la tendència en diferents estadis. C3 recull canvis en un període de temps curs, 3 dies, mentre que C14 en un període de temps llarg, 14 dies, si els canvis petits es mantenen en el temps en una mateixa direcció, finalment C14 es veurà afectat, indicant un canvi de tendència.
+
+### Incidència
+```{r R_incidencia, echo=FALSE}
+```
+Incidència de la pandèmia en la població, per cada 100.000 habitants.
+
+### Situació reportada a Catalunya
+
+```{r situation, echo=FALSE}
+```
+
+### Corba acumulada
+```{r plotCumulativeCurve, echo=FALSE}
+```
+
+Row
+-----------------------------------------------------------------------
+### Nombre total de casos
+
+```{r Current_casos, echo=FALSE}
+valueBox(casosPositiusAcumulats, icon = "fa-pencil")
+```
+
+### Nous casos del darrer dia
+
+```{r Current_data, echo=FALSE}
+casosAhir=casosDiaris$nous_casos_confirmats[nrow(casosDiaris)]
+
+valueBox(casosAhir, icon = "fa-pencil")
+```
+
+### Darrer dia d'actualització del sistema
+
+```{r last_updated, echo=FALSE}
+```
+
