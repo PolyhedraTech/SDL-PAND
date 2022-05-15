@@ -268,18 +268,18 @@ ICRA_data <- read.csv2(file)
 # values<-newInfectives2.5$values[newInfectives2.5$time %in% index]
 # newInfectives2.5<-data.frame(datetimes,values)
 
-# onlyOneModel = FALSE
+onlyOneModel = FALSE
 
 #Cal afegir les dades del model a casosDiaris
 # nous_casos_model <- read.csv("../new_cases.csv", header = FALSE)
 # casosDiaris$model1.7<-nous_casos_model[31:(dim(casosDiaris)[1]+30),]
 # 
-# casosDiaris$m_3<-ma(casosDiaris$nous_casos_confirmats,3)
-# casosDiaris$m_7<-ma(casosDiaris$nous_casos_confirmats,7)
-# casosDiaris$m_14<-ma(casosDiaris$nous_casos_confirmats,14)
+casosDiaris$m_3<-ma(casosDiaris$nous_casos_confirmats,3)
+casosDiaris$m_7<-ma(casosDiaris$nous_casos_confirmats,7)
+casosDiaris$m_14<-ma(casosDiaris$nous_casos_confirmats,14)
 
 #Guardar en csv els casos diaris
-# write.csv(casosDiaris,"./SDLModel/casosDiaris.csv",row.names = FALSE)
+write.csv(casosDiaris,"./casosDiarisLAST.csv",row.names = FALSE)
 
 ```
 Introduction {data-icon="fa-list"}

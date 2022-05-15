@@ -457,6 +457,25 @@ fig
 
 if (regio=="")
 {
+  file = "../../models/SDL/Pandemiav2.5/experiment/catalunya/data/traces/newInfectiveDetectedDiary.csv"
+} else {
+  # file = paste(paste("../../models/SDL/Pandemiav2.5/regions/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
+  file = "../../models/SDL/Pandemiav2.5/experiment/catalunya/data/traces/newInfectiveDetectedDiary.csv"
+}
+
+newInfectives2.5 <- read.csv2(file)
+
+# 
+# # El model sdlps comença el dia 29 de gener, seleccionem només els valors dels dts sense decimals, 1 de cada 10.
+# index = c(1:(length(newInfectives2.5$time)/10))
+# dt1 <- rep(as.Date("2020-01-29 CET"),length(index))
+# datetimes<-dt1+index
+# values<-newInfectives2.5$values[newInfectives2.5$time %in% index]
+# newInfectives2.5<-data.frame(datetimes,values)
+
+
+if (regio=="")
+{
   file = "../../models/SDL/Pandemiav2.6/regions/newInfectiveDetectedDiary.csv"
 } else {
   file = paste(paste("../../models/SDL/Pandemiav2.6/regions/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
