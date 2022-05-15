@@ -287,8 +287,9 @@ Introduction {data-icon="fa-list"}
 
 Row
 -----------------------------------------------------------------------
-### Detected new cases model 2.10 {data-padding=50}
-From the current version of the model (2.10) the forecast tries to find the current number of real cases. Until version 2.9 the aim of the model was to show a pessimistic scenario with a maximum number of cases, this is the reason why the forecasts moves in the upper threshold of the detected cases curve. Therefore, 2.10 previsions for detected cases is below other previous previsions. An attempt to describe the drivers of the spread in Catalonia can be reviewed at http://pand.sdlps.com/Pandemic-drivers.html
+### Detected new cases model 2.11 {data-padding=50}
+Model 2.11 with a parametretrization for reinfection due to new BA,5 variant of about 10% (to be analyzed in the upcoming weeks). Data regarding the spread across data ranges can be reviewed at http://pand.sdlps.com/Pandemic-drivers.html
+(*From the version 2.10 of the model the forecast tries to find the current number of real cases and not a pesimistic scenario like previous models.)
 
 ```{r plotIntro, echo=FALSE}
 
@@ -847,8 +848,6 @@ while (i<=nLags)
   i=i+1
 }
 
-knitr::kable(Grangers, digits=3)
-
 ```
 
 
@@ -904,6 +903,16 @@ Edar Tarragona - DTAR
   fig <- fig %>% add_trace(y = newInfectives$values, x=newInfectives$datetimes, type='scatter', mode = 'lines', name='Casos SDL')
   fig
 
+  i=1;
+dependent=ICRA_data_edar$LOG_N1
+independent=ICRA_data_edar$LOG_casos
+
+while (i<=nLags)
+{
+  GRtest<-grangertest(dependent~independent, order=i)
+  Grangers$DPDL[i]<-GRtest$`Pr(>F)`[2]
+  i=i+1
+}
 ```
 
 Row
@@ -958,6 +967,20 @@ Edar Manresa - DMAS
   fig <- fig %>% add_trace(y = newInfectives$values, x=newInfectives$datetimes, type='scatter', mode = 'lines', name='Casos SDL')
   fig
 
+i=1;
+dependent=ICRA_data_edar$LOG_N1
+independent=ICRA_data_edar$LOG_casos
+
+while (i<=nLags)
+{
+  GRtest<-grangertest(dependent~independent, order=i)
+  Grangers$DPDL[i]<-GRtest$`Pr(>F)`[2]
+  i=i+1
+}
+```
+
+```{r taulaGr, echo=FALSE}
+knitr::kable(Grangers, digits=3)
 ```
 
 Model history {data-icon="fa-list"}
