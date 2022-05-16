@@ -585,7 +585,7 @@ if (regio=="")
 {
   file = "../../models/SDL/Pandemiav2.9/regions/newInfectiveDetectedDiary.csv"
 } else {
-  file = paste(paste("../../models/SDL/Pandemiav2.8-B/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
+  file = paste(paste("../../models/SDL/Pandemiav2.9/regions/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
 }
 
 newInfectivesDetected2.9 <- read.csv2(file)
@@ -606,7 +606,7 @@ if (regio=="")
 {
   file = "../../models/SDL/Pandemiav2.9b/regions/newInfectiveDetectedDiary.csv"
 } else {
-  file = paste(paste("../../models/SDL/Pandemiav2.8-B/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
+  file = paste(paste("../../models/SDL/Pandemiav2.9b/regions/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
 }
 
 newInfectivesDetected2.9b <- read.csv2(file)
@@ -626,7 +626,7 @@ if (regio=="")
 {
   file = "../../models/SDL/Pandemiav2.9c/regions-ALL/newInfectiveDetectedDiary.csv"
 } else {
-  file = paste(paste("../../models/SDL/Pandemiav2.8-B/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
+  file = paste(paste("../../models/SDL/Pandemiav2.9c/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
 }
 
 newInfectivesDetected2.9c <- read.csv2(file)
@@ -647,7 +647,7 @@ if (regio=="")
 {
   file = "../../models/SDL/Pandemiav2.9d/regions-ALL/newInfectiveDetectedDiary.csv"
 } else {
-  file = paste(paste("../../models/SDL/Pandemiav2.8-B/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
+  file = paste(paste("../../models/SDL/Pandemiav2.9d/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
 }
 
 newInfectivesDetected2.9d <- read.csv2(file)
@@ -667,7 +667,7 @@ if (regio=="")
 {
   file = "../../models/SDL/Pandemiav2.9e/regions-ALL/newInfectiveDetectedDiary.csv"
 } else {
-  file = paste(paste("../../models/SDL/Pandemiav2.8-B/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
+  file = paste(paste("../../models/SDL/Pandemiav2.9e/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
 }
 
 newInfectivesDetected2.9e <- read.csv2(file)
@@ -688,7 +688,7 @@ if (regio=="")
 {
   file = "../../models/SDL/Pandemiav2.9f/regions-ALL/newInfectiveDetectedDiary.csv"
 } else {
-  file = paste(paste("../../models/SDL/Pandemiav2.8-B/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
+  file = paste(paste("../../models/SDL/Pandemiav2.9f/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
 }
 
 newInfectivesDetected2.9f <- read.csv2(file)
@@ -709,7 +709,7 @@ if (regio=="")
 {
   file = "../../models/SDL/Pandemiav2.9e/regions-ALL/newInfectiveDetectedDiary.csv"
 } else {
-  file = paste(paste("../../models/SDL/Pandemiav2.8-B/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
+  file = paste(paste("../../models/SDL/Pandemiav2.9e/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
 }
 
 newInfectivesDetected2.9e <- read.csv2(file)
@@ -730,7 +730,7 @@ if (regio=="")
 {
   file = "../../models/SDL/Pandemiav2.9g/regions-ALL/newInfectiveDetectedDiary.csv"
 } else {
-  file = paste(paste("../../models/SDL/Pandemiav2.8-B/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
+  file = paste(paste("../../models/SDL/Pandemiav2.9g/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
 }
 
 newInfectivesDetected2.9g <- read.csv2(file)
@@ -752,7 +752,7 @@ if (regio=="")
 {
   file = "../../models/SDL/Pandemiav2.9h-CAT-Omni/regions-ALL/newInfectiveDetectedDiary.csv"
 } else {
-  file = paste(paste("../../models/SDL/Pandemiav2.8-B/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
+  file = paste(paste("../../models/SDL/Pandemiav2.9h-CAT-Omni/regions-ALL/",regio,sep=""),"_newInfectiveDetectedDiary.csv",sep="")
 }
 
 newInfectivesDetected2.9h <- read.csv2(file)
