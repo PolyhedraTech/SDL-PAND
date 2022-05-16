@@ -26,6 +26,10 @@ knitr::opts_chunk$set(echo = TRUE)
 read_chunk('common.R')
 ```
 
+```{r functions, echo=FALSE, message=FALSE, warning=FALSE}
+
+```
+
 
 ```{r setup, include=FALSE}
 PoblacioTotal = 526959
@@ -43,32 +47,10 @@ colnames(casosDiaris) <- c("data","nous_casos_confirmats")
 testsDiaris <- aggregate(casosSospitos$pcr, by=list(casosSospitos$data), sum)
 colnames(testsDiaris) <- c("data","nous_tests_fets")
 
-infective <- read.csv2("../../models/SDL/Pandemiav1.9/experiment/6700/data/traces/totalInfective.csv")
-recovered <- read.csv2("../../models/SDL/Pandemiav1.9/experiment/6700/data/traces/totalRecovered.csv")
-deaths <- read.csv2("../../models/SDL/Pandemiav1.9/experiment/6700/data/traces/totalDeceased.csv")
+casosDiaris$m_3<-ma(casosDiaris$nous_casos_confirmats,3)
+casosDiaris$m_7<-ma(casosDiaris$nous_casos_confirmats,7)
+casosDiaris$m_14<-ma(casosDiaris$nous_casos_confirmats,14)
 
-#nous_casos_model <- read.csv("../new_cases.csv", header = FALSE)
-newInfectives <- read.csv2("../../models/SDL/Pandemiav1.9/experiment/6700/data/traces/newInfectiveDetectedDiary.csv")
-
-# El model sdlps comença el dia 29 de gener, seleccionem només els valors dels dts sense decimals, 1 de cada 10.
-index = c(1:(length(newInfectives$time)/10))
-dt1 <- rep(as.Date("2020-01-29 CET"),length(index))
-datetimes<-dt1+index
-values<-newInfectives$values[newInfectives$time %in% index]
-newInfectives<-data.frame(datetimes,values)
-
-onlyOneModel = TRUE
-
-#Cal afegir les dades del model a casosDiaris
-nous_casos_model <- read.csv("../new_cases.csv", header = FALSE)
-casosDiaris$model1.7<-nous_casos_model[31:(dim(casosDiaris)[1]+30),]
-
-#Guardar en csv els casos diaris
-write.csv(casosDiaris,"./SDLModel/6700_casosDiaris.csv",row.names = FALSE)
-
-```
-
-```{r functions, echo=FALSE}
 ```
 
 
