@@ -1,0 +1,21 @@
+file title  : Initial_infective
+data type   : real
+file type   : ascii
+columns     : 2
+rows        : 5
+ref.system  : plane
+ref.units   : m
+unit dist.  : 1
+min. X      : 0
+max. X      : 100000000
+min. Y      : 0
+max. Y      : 100000000
+pos 'n error: unknown
+resolution  : 30
+min. value  : 0
+max. value  : 100000000
+Value units : unspecified
+Value Error : unknown
+flag Value  : none
+flag def 'n : none
+legend cats : 0

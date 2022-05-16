@@ -1,0 +1,21 @@
+file title  : Catalunya
+data type   : string
+file type   : ascii
+columns     : 1
+rows        : 1
+ref.system  : plane
+ref.units   : m
+unit dist.  : 15
+min. X      : 0
+max. X      : 2
+min. Y      : 0
+max. Y      : 2
+pos 'n error: unknown
+resolution  : 30
+min. value  : 0
+max. value  : 2
+Value units : unspecified
+Value Error : unknown
+flag Value  : none
+flag def 'n : none
+legend cats : 0
